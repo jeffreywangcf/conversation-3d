@@ -1,0 +1,44 @@
+- become: 'yes'
+  hosts: audio_devices
+  name: Conversation4D Deployment
+  tasks:
+  - copy:
+      dest: /tmp/play.wav
+      src: output/{{ item.file }}
+    delegate_to: '{{ item.ip }}'
+    name: copying audio
+    vars:
+      ansible_user: jeffreywangcf
+    with_items: '{{ devices }}'
+  - copy:
+      dest: /tmp/play.py
+      src: play.py
+    delegate_to: '{{ item.ip }}'
+    name: copy run scripts
+    vars:
+      ansible_user: jeffreywangcf
+    with_items: '{{ devices }}'
+  - delegate_to: '{{ item.ip }}'
+    name: sync with other devices
+    vars:
+      ansible_user: jeffreywangcf
+    wait_for:
+      path: /tmp/play.wav
+      state: present
+      timeout: 180
+    with_items: '{{ devices }}'
+  - async: 120
+    command: python3 /tmp/play.py
+    delegate_to: '{{ item.ip }}'
+    name: running scripts
+    poll: 0
+    vars:
+      ansible_user: jeffreywangcf
+    with_items: '{{ devices }}'
+  vars:
+    ansible_become_pass: iostream
+    devices:
+    - file: part1.wav
+      ip: 192.168.1.22
+    - file: part2.wav
+      ip: 192.168.1.9
