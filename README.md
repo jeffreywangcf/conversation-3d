@@ -2,6 +2,20 @@
 
 Transforming multi-speaker audio into synchronized playback across devices
 
+## Setting up
+
+1. **Download the project**: `git clone` the project to your preferred directory, then `cd` into the directory.
+2. **Install Python**: Ensure you have Python 3 and tkinter installed. If not, you can download it from [here](https://www.python.org/downloads/).
+3. **Install dependencies**: run the following command to install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Running the project**: run the following command to launch the gui. You might need to escalate privilege for the ip scanner to work properly.
+   ```bash
+   python gui.py
+   ```
+
+
 ## Approach
 
 ### Diarization
