@@ -17,7 +17,7 @@ class AudioSplitApp:
         self.animation_running = False
 
         # UI
-        title_label = tk.Label(root, text="Conversation 4D", font=("Helvetica", 20))
+        title_label = tk.Label(root, text="Conversation 3D", font=("Helvetica", 20))
         title_label.pack(pady=10)
         self.tree = ttk.Treeview(root, columns=("Hostname", "IP"), show="headings", selectmode="extended")
         self.tree.heading("Hostname", text="Device Name")

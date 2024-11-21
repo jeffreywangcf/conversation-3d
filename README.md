@@ -1,4 +1,4 @@
-# Conversation 4D
+# Conversation 3D
 
 Transforming multi-speaker audio into synchronized playback across devices
 
